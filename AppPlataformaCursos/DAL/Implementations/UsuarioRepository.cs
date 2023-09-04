@@ -7,12 +7,15 @@ using AppPlataformaCursos.Models;
 using AppPlataformaCursosIdentity.DTO;
 using AppPlataformaCursosIdentity.Models;
 using AutoMapper;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using XAct.Users;
 using XSystem.Security.Cryptography;
 
 namespace AppPlataformaCursos.DAL.Implementations
@@ -118,29 +121,39 @@ namespace AppPlataformaCursos.DAL.Implementations
           
         }
 
-        public async Task<bool> UpdateUsuario(Usuario usuario)
+        public async Task<string> UpdateUsuario(UsuarioUpdateDTOIdentity usuario)
         {
-            var result = false;
-
-            var usuarioViejo = await _context.Usuarios.FindAsync(usuario.Id);
-
+            var message = "";
+            var usuarioViejo = await _context.AppUsuarios.FindAsync(usuario.Id);
             if (usuarioViejo == null)
             {
-                return false;
+                message = "No se encontro el usuario, por favor revise el id";
+                return message;
             }
 
-            var contraseñaEncriptada = "";
+            var token = await _userManager.GeneratePasswordResetTokenAsync(usuarioViejo);
+            var resetPass = await _userManager.ResetPasswordAsync(usuarioViejo, token, usuario.Password);
 
-            usuarioViejo.NombreUsuario = usuario.NombreUsuario ?? usuarioViejo.NombreUsuario;
+            if (!resetPass.Succeeded)
+            {
+                message = "No se logro actualizar la contraseña, error interno del servidor";
+                return message;
+            }
+
+            usuarioViejo.Email = usuario.NombreUsuario ?? usuarioViejo.Email;
             usuarioViejo.Nombre = usuario.Nombre ?? usuarioViejo.Nombre;
-            usuarioViejo.Password = contraseñaEncriptada ?? usuarioViejo.Password;
-            usuarioViejo.Role = usuario.Role ?? usuarioViejo.Role;
+            usuarioViejo.NormalizedEmail = usuario.NombreUsuario.ToUpper() ?? usuarioViejo.NormalizedEmail;
 
-            _context.Entry(usuarioViejo).State = EntityState.Modified;
-           
-            result = await _context.SaveChangesAsync() > 0;
-            return result;
+            await _userManager.UpdateAsync(usuarioViejo);
+
+            var result = await _context.SaveChangesAsync() > 0;
+            message = "Actualizacion procesada con exito";
+
+            return message;
         }
+
+
+
 
         public async Task<AppUsuarios> GetUserById(string usuarioId)
         {
@@ -150,6 +163,16 @@ namespace AppPlataformaCursos.DAL.Implementations
                 return null;
             }
             return usuarioEncontrado;
+        }
+
+        public async Task<bool> EliminarUsuario(string nombreUsuario)
+        {
+            var result = false;
+            var usuario = await _context.AppUsuarios.FirstOrDefaultAsync(e => e.Id == nombreUsuario);
+            _context.AppUsuarios.Remove(usuario);
+            result = await _context.SaveChangesAsync() > 0;
+            return result;
+
         }
     }
 }

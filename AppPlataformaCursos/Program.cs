@@ -35,7 +35,7 @@ builder.Services.AddResponseCaching(opt =>
 
 
 
-builder.Services.AddIdentity<AppUsuarios, IdentityRole>().AddEntityFrameworkStores<AplicationDbContext>();
+builder.Services.AddIdentity<AppUsuarios, IdentityRole>().AddEntityFrameworkStores<AplicationDbContext>().AddDefaultTokenProviders();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

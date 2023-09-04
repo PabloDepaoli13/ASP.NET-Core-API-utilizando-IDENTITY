@@ -4237,11 +4237,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\.Net Identity\\AppPlataformaCursos\\AppPlataformaCursosIdentity.csproj",
+      "projectUniqueName": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\ASP.NET-Core-API-utilizando-IDENTITY\\AppPlataformaCursos\\AppPlataformaCursosIdentity.csproj",
       "projectName": "AppPlataformaCursosIdentity",
-      "projectPath": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\.Net Identity\\AppPlataformaCursos\\AppPlataformaCursosIdentity.csproj",
+      "projectPath": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\ASP.NET-Core-API-utilizando-IDENTITY\\AppPlataformaCursos\\AppPlataformaCursosIdentity.csproj",
       "packagesPath": "C:\\Users\\Pablo Pc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\.Net Identity\\AppPlataformaCursos\\obj\\",
+      "outputPath": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\ASP.NET-Core-API-utilizando-IDENTITY\\AppPlataformaCursos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

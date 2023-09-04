@@ -2,6 +2,7 @@
 using AppPlataformaCursos.DAL.Interfaces;
 using AppPlataformaCursos.DTO;
 using AppPlataformaCursos.Models;
+using AppPlataformaCursosIdentity.DTO;
 using AppPlataformaCursosIdentity.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -124,9 +125,9 @@ namespace AppPlataformaCursos.Controllers
 
         [HttpDelete]
 
-        public async Task<ActionResult> EliminarUsuarios(int id)
+        public async Task<ActionResult> EliminarUsuarios(string id)
         {
-            var resultado = await _repository.DeleteEntity(id);
+            var resultado = await _userRepository.EliminarUsuario(id);
             if (!resultado)
             {
                 respuestaAPI.StatusCode = HttpStatusCode.InternalServerError;
@@ -142,19 +143,19 @@ namespace AppPlataformaCursos.Controllers
 
         [HttpPut]
 
-        public async Task<ActionResult> UpdateComentario(Usuario usuarioUpdate)
+        public async Task<ActionResult> UpdateComentario(UsuarioUpdateDTOIdentity usuarioUpdate)
         {
             
             var resultado = await _userRepository.UpdateUsuario(usuarioUpdate);
-            if (!resultado)
+            if (resultado != "Actualizacion procesada con exito")
             {
                 respuestaAPI.StatusCode = HttpStatusCode.InternalServerError;
-                respuestaAPI.ErrorMessage.Add("No se pudo actualizar la entidad");
+                respuestaAPI.ErrorMessage.Add(resultado);
                 respuestaAPI.IsSuccess = false;
                 return BadRequest(respuestaAPI);
             }
             respuestaAPI.StatusCode = HttpStatusCode.OK;
-            respuestaAPI.ErrorMessage.Add("Operacion exitosa");
+            respuestaAPI.ErrorMessage.Add(resultado);
             respuestaAPI.IsSuccess = true;
             respuestaAPI.Result = usuarioUpdate;
             return Ok(respuestaAPI);

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "1FU1gF8XG0W7sQmmUQCklXaqmwNd/ZNlFO7EbRmuIn31HMaSFOfrdasyAoCLtYpyyOq/e4DQJqtSe22E8CNRKQ==",
+  "dgSpecHash": "413xuvJGsAaRTvLYewFCpt2tgM8+5VB03UlVVj8iG2CRZKRn1gaw5LSJWpXOqToglc0X527+R9AdW4CwuQ3/Qg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\.Net Identity\\AppPlataformaCursos\\AppPlataformaCursosIdentity.csproj",
+  "projectFilePath": "C:\\Users\\Pablo Pc\\Desktop\\Programacion\\Proyectos C# Entity Framework\\ASP.NET-Core-API-utilizando-IDENTITY\\AppPlataformaCursos\\AppPlataformaCursosIdentity.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Pablo Pc\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Pablo Pc\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
